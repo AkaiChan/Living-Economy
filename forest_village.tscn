@@ -1,0 +1,327 @@
+[gd_scene format=4 uid="uid://4c35tudxgela"]
+
+[ext_resource type="Script" uid="uid://d1g6h5obhkxen" path="res://forest_village.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://ckfgcjclrh7w2" path="res://market_stall.gd" id="2_stall"]
+[ext_resource type="Script" path="res://ai_merchant.gd" id="3_ai"]
+[ext_resource type="Script" uid="uid://bdrye06ostmko" path="res://carpenter.gd" id="4_carpenter"]
+[ext_resource type="Script" uid="uid://kr5234bpuu8x" path="res://guild_board.gd" id="5_guild"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_zone"]
+points = PackedVector2Array(0, -60, 120, 0, 0, 60, -120, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_stall"]
+radius = 36.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_guild"]
+radius = 28.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_market"]
+bg_color = Color(0.09, 0.13, 0.1, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.66, 0.36, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ForestVillage" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+monitoring = true
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="Ground" type="Polygon2D" parent="."]
+color = Color(0.13, 0.36, 0.18, 1)
+polygon = PackedVector2Array(0, -60, 120, 0, 0, 60, -120, 0)
+
+[node name="Clearing" type="Polygon2D" parent="."]
+color = Color(0.42, 0.36, 0.18, 1)
+polygon = PackedVector2Array(0, -16, 26, 0, 0, 16, -26, 0)
+
+[node name="TreeWest" type="Polygon2D" parent="."]
+position = Vector2(-58, 8)
+color = Color(0.08, 0.24, 0.12, 1)
+polygon = PackedVector2Array(0, -26, 14, -6, 6, 8, -6, 8, -14, -6)
+
+[node name="TreeEast" type="Polygon2D" parent="."]
+position = Vector2(18, -18)
+color = Color(0.08, 0.24, 0.12, 1)
+polygon = PackedVector2Array(0, -24, 12, -4, 5, 8, -5, 8, -12, -4)
+
+[node name="HouseWest" type="Polygon2D" parent="."]
+position = Vector2(-28, -8)
+color = Color(0.5, 0.3, 0.16, 1)
+polygon = PackedVector2Array(0, -14, 16, -2, 10, 8, 0, 8, -16, -2)
+
+[node name="HouseEast" type="Polygon2D" parent="."]
+position = Vector2(42, 12)
+color = Color(0.55, 0.34, 0.18, 1)
+polygon = PackedVector2Array(0, -14, 16, -2, 10, 8, 0, 8, -16, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_zone")
+
+[node name="AIMerchant" type="Node" parent="."]
+script = ExtResource("3_ai")
+
+[node name="DecisionTimer" type="Timer" parent="AIMerchant"]
+one_shot = false
+
+[node name="Stall" type="Node2D" parent="."]
+position = Vector2(0, 8)
+script = ExtResource("2_stall")
+
+[node name="Awning" type="Polygon2D" parent="Stall"]
+color = Color(0.62, 0.22, 0.14, 1)
+polygon = PackedVector2Array(-28, -2, 28, -2, 20, -16, -20, -16)
+
+[node name="Counter" type="Polygon2D" parent="Stall"]
+color = Color(0.46, 0.28, 0.12, 1)
+polygon = PackedVector2Array(0, -12, 24, 0, 0, 12, -24, 0)
+
+[node name="Wood" type="Polygon2D" parent="Stall"]
+position = Vector2(12, 2)
+color = Color(0.74, 0.55, 0.26, 1)
+polygon = PackedVector2Array(0, -8, 8, 0, 0, 8, -8, 0)
+
+[node name="Interaction" type="Area2D" parent="Stall"]
+collision_layer = 4
+collision_mask = 2
+monitoring = true
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stall/Interaction"]
+shape = SubResource("CircleShape2D_stall")
+
+[node name="MarketUI" type="CanvasLayer" parent="Stall"]
+layer = 2
+follow_viewport_enabled = false
+
+[node name="TradeButton" type="Button" parent="Stall/MarketUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 200.0
+offset_right = 80.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "交易"
+
+[node name="Panel" type="Panel" parent="Stall/MarketUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -250.0
+offset_right = 210.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_market")
+
+[node name="Title" type="Label" parent="Stall/MarketUI/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 400.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.97, 0.95, 0.88, 1)
+theme_override_font_sizes/font_size = 26
+text = "西方森林村莊市場"
+horizontal_alignment = 1
+
+[node name="Details" type="Label" parent="Stall/MarketUI/Panel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 72.0
+offset_right = 384.0
+offset_bottom = 320.0
+theme_override_colors/font_color = Color(0.93, 0.91, 0.84, 1)
+theme_override_font_sizes/font_size = 22
+text = "攤販：森林村莊木材商\n商品：木材\n木材售價：10 G\n木材收購價：7 G\n攤販木材：5\n攤販金錢：0 G\n玩家金錢：100 G\n玩家木材：0"
+
+[node name="Message" type="Label" parent="Stall/MarketUI/Panel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 318.0
+offset_right = 384.0
+offset_bottom = 358.0
+theme_override_colors/font_color = Color(0.95, 0.82, 0.4, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="Stall/MarketUI/Panel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 366.0
+offset_right = 350.0
+offset_bottom = 418.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+text = "購買 1 木材"
+
+[node name="SellButton" type="Button" parent="Stall/MarketUI/Panel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 426.0
+offset_right = 350.0
+offset_bottom = 478.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+text = "出售 1 木材"
+
+[node name="CloseButton" type="Button" parent="Stall/MarketUI/Panel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 486.0
+offset_right = 350.0
+offset_bottom = 538.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+text = "關閉"
+
+[node name="Carpenter" type="Node" parent="."]
+script = ExtResource("4_carpenter")
+
+[node name="GuildBoard" type="Node2D" parent="."]
+position = Vector2(-96, 6)
+script = ExtResource("5_guild")
+
+[node name="Post" type="Polygon2D" parent="GuildBoard"]
+color = Color(0.32, 0.2, 0.1, 1)
+polygon = PackedVector2Array(-3, -18, 3, -18, 3, 10, -3, 10)
+
+[node name="Board" type="Polygon2D" parent="GuildBoard"]
+color = Color(0.86, 0.8, 0.62, 1)
+polygon = PackedVector2Array(-16, -28, 16, -28, 16, -6, -16, -6)
+
+[node name="Notice" type="Polygon2D" parent="GuildBoard"]
+color = Color(0.25, 0.32, 0.28, 1)
+polygon = PackedVector2Array(-10, -24, 10, -24, 10, -20, -10, -20)
+
+[node name="Interaction" type="Area2D" parent="GuildBoard"]
+collision_layer = 4
+collision_mask = 2
+monitoring = true
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GuildBoard/Interaction"]
+shape = SubResource("CircleShape2D_guild")
+
+[node name="GuildUI" type="CanvasLayer" parent="GuildBoard"]
+layer = 2
+follow_viewport_enabled = false
+
+[node name="GuildButton" type="Button" parent="GuildBoard/GuildUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = 200.0
+offset_right = 250.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "工會"
+
+[node name="Panel" type="Panel" parent="GuildBoard/GuildUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -388.0
+offset_right = 210.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_market")
+
+[node name="Title" type="Label" parent="GuildBoard/GuildUI/Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 404.0
+offset_bottom = 52.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.97, 0.95, 0.88, 1)
+theme_override_font_sizes/font_size = 24
+text = "西方森林村莊工會"
+horizontal_alignment = 1
+
+[node name="Details" type="Label" parent="GuildBoard/GuildUI/Panel"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 60.0
+offset_right = 392.0
+offset_bottom = 396.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.93, 0.91, 0.84, 1)
+theme_override_font_sizes/font_size = 18
+text = "委託：木匠的木材採購\n委託人：森林村莊木匠\n需求：木材 × 2\n報酬：30 G\n狀態：OPEN\n玩家木材：0\n木匠金錢：20 G\n履約資金：30 G\n木匠木材：0    家具：0\n生產：閒置\n最近：尚無"
+
+[node name="Message" type="Label" parent="GuildBoard/GuildUI/Panel"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 404.0
+offset_right = 392.0
+offset_bottom = 440.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.95, 0.82, 0.4, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="AcceptButton" type="Button" parent="GuildBoard/GuildUI/Panel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 448.0
+offset_right = 350.0
+offset_bottom = 496.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+text = "接受委託"
+
+[node name="DeliverButton" type="Button" parent="GuildBoard/GuildUI/Panel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 504.0
+offset_right = 350.0
+offset_bottom = 552.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+text = "交付木材"
+
+[node name="CloseButton" type="Button" parent="GuildBoard/GuildUI/Panel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 560.0
+offset_right = 350.0
+offset_bottom = 608.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+text = "關閉"

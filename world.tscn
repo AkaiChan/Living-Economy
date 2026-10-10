@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=4 uid="uid://ctqcpx71tlqsv"]
+
+[ext_resource type="Texture2D" uid="uid://buengd1pv5x0q" path="res://grass.png" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://iey5hwget8ry" path="res://player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://4c35tudxgela" path="res://forest_village.tscn" id="3_village"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj7yv"]
+texture = ExtResource("1_f3sb7")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gv5m4"]
+tile_shape = 1
+tile_size = Vector2i(64, 32)
+sources/0 = SubResource("TileSetAtlasSource_fj7yv")
+
+[node name="World" type="Node2D" unique_id=636947962]
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=135911110]
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAABAPz/AAAAAAAAAAABAPv/AAAAAAAAAAABAPr/AAAAAAAAAAACAPz/AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAD///7/AAAAAAAAAAD+//3/AAAAAAAAAAD///z/AAAAAAAAAAD///v/AAAAAAAAAAAAAPr/AAAAAAAAAAAAAPn/AAAAAAAAAAAAAPv/AAAAAAAAAAAAAPz/AAAAAAAAAAD///3/AAAAAAAAAAD+//z/AAAAAAAAAAD+//v/AAAAAAAAAAD///r/AAAAAAAAAAD///n/AAAAAAAAAAAAAPj/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_gv5m4")
+
+[node name="ForestVillage" parent="." instance=ExtResource("3_village")]
+position = Vector2(-248, -48)
+location_label = NodePath("../LocationUI/LocationLabel")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(32, -48)
+
+[node name="LocationUI" type="CanvasLayer" parent="."]
+layer = 1
+follow_viewport_enabled = false
+
+[node name="LocationLabel" type="Label" parent="LocationUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 28.0
+offset_right = -24.0
+offset_bottom = 76.0
+grow_horizontal = 2
+mouse_filter = 2
+text = "野外"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_colors/font_color = Color(0.97, 0.95, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.08, 0.05, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 28
