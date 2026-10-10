@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://4c35tudxgela"]
 
-[ext_resource type="Script" uid="uid://d1g6h5obhkxen" path="res://forest_village.gd" id="1_script"]
-[ext_resource type="Script" uid="uid://ckfgcjclrh7w2" path="res://market_stall.gd" id="2_stall"]
-[ext_resource type="Script" path="res://ai_merchant.gd" id="3_ai"]
-[ext_resource type="Script" uid="uid://bdrye06ostmko" path="res://carpenter.gd" id="4_carpenter"]
-[ext_resource type="Script" uid="uid://kr5234bpuu8x" path="res://guild_board.gd" id="5_guild"]
+[ext_resource type="Script" uid="uid://d1g6h5obhkxen" path="res://scripts/forest_village.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://ckfgcjclrh7w2" path="res://scripts/market_stall.gd" id="2_stall"]
+[ext_resource type="Script" uid="uid://djuhg8a5qahlp" path="res://scripts/ai_merchant.gd" id="3_ai"]
+[ext_resource type="Script" uid="uid://bdrye06ostmko" path="res://scripts/carpenter.gd" id="4_carpenter"]
+[ext_resource type="Script" uid="uid://kr5234bpuu8x" path="res://scripts/guild_board.gd" id="5_guild"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_zone"]
 points = PackedVector2Array(0, -60, 120, 0, 0, 60, -120, 0)
