@@ -1,0 +1,132 @@
+[gd_scene format=4]
+
+[ext_resource type="TileSet" path="res://assets/tilesets/living_economy/terrain_tileset_64.tres" id="1_mlupu"]
+[ext_resource type="PackedScene" path="res://scenes/forest_village.tscn" id="2_7hvne"]
+[ext_resource type="Script" path="res://scripts/forest_village.gd" id="3_b2yex"]
+[ext_resource type="Texture2D" path="res://assets/tilesets/living_economy/assets/objects_atlas_128x160.png" id="4_38rpl"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="5_2vjk1"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="6_os0nr"]
+
+[node name="VillageArtPreview" type="Node2D" unique_id=1831036974]
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=1597562387]
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP3/AAAAAAAAAAABAPz/AAAAAAAAAAABAPv/AAAAAAAAAAABAPr/AAAAAAAAAAACAPz/AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAD///7/AAAAAAAAAAD+//3/AAAAAAAAAAD///z/AAAAAAAAAAD///v/AAAAAAAAAAAAAPr/AAAAAAAAAAAAAPn/AAAAAAAAAAAAAPv/AAAAAAAAAAAAAPz/AAAAAAAAAAD///3/AAAAAAAAAAD+//z/AAAAAAAAAAD+//v/AAAAAAAAAAD///r/AAAAAAAAAAD///n/AAAAAAAAAAAAAPj/AAAAAAAAAAD7//f/AAAAAAAAAAD7//j/AAAAAAAAAAD8//j/AAAAAAAAAAD6//n/AAAAAAAAAAD7//n/AAAAAAAAAAD8//n/AAAAAAAAAAD7//r/AAAAAAAAAAD8//r/AAAAAAAAAAD9//r/AAAAAAAAAAD6//v/AAAAAAAAAAD7//v/AAADAAAAAAD8//v/AAAAAAAAAAD9//v/AAAAAAAAAAD6//z/AAAAAAAAAAD7//z/AAADAAAAAAD8//z/AAADAAAAAAD9//z/AAAAAAAAAAD6//3/AAAAAAAAAAD7//3/AAADAAAAAAD8//3/AAAAAAAAAAD9//3/AAAAAAAAAAD7//7/AAAAAAAAAAD8//7/AAAAAAAAAAD9//7/AAAAAAAAAAD6////AAAAAAAAAAD7////AAAAAAAAAAD8////AAAAAAAAAAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD7/wEAAAAAAAAAAAD+//7/AAAAAAAAAAD9////AAAAAAAAAAD+////AAAAAAAAAAABAP//AAAAAAAAAAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAABAAAAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAACAPv/AAAAAAAAAAACAPr/AAAAAAAAAAADAPr/AAAAAAAAAAADAPv/AAAAAAAAAAADAPz/AAAAAAAAAAADAP3/AAAAAAAAAAADAP7/AAAAAAAAAAABAPn/AAAAAAAAAAACAPn/AAAAAAAAAAADAPn/AAAAAAAAAAD///j/AAAAAAAAAAABAPj/AAAAAAAAAAACAPj/AAAAAAAAAAADAPj/AAAAAAAAAAAEAPr/AAAAAAAAAAAEAPv/AAAAAAAAAAAEAPz/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAP7/AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAACAAEAAAAAAAAAAAD+/wIAAAAAAAAAAAD//wIAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAD+//r/AAAAAAAAAAD9//n/AAAAAAAAAAD+//n/AAAAAAAAAAD+//j/AAAAAAAAAAD+//f/AAAAAAAAAAD///f/AAAAAAAAAAAAAPf/AAAAAAAAAAABAPf/AAAAAAAAAAACAPf/AAAAAAAAAAD9//j/AAAAAAAAAAD9//f/AAAAAAAAAAD+//b/AAAAAAAAAAD///b/AAAAAAAAAAAAAPb/AAAAAAAAAAABAPb/AAAAAAAAAAACAPb/AAAAAAAAAAD5//X/AAAAAAAAAAD6//X/AAAAAAAAAAD7//X/AAAAAAAAAAD8//X/AAAAAAAAAAD9//X/AAAAAAAAAAD5//b/AAAAAAAAAAD6//b/AAAAAAAAAAD7//b/AAAAAAAAAAD8//b/AAAAAAAAAAD9//b/AAAAAAAAAAD5//f/AAAAAAAAAAD6//f/AAAAAAAAAAD8//f/AAAAAAAAAAD5//j/AAAAAAAAAAD6//j/AAAAAAAAAAD5//n/AAAAAAAAAAD5//r/AAAAAAAAAAD6//r/AAAAAAAAAAD4//f/AAAAAAAAAAD4//j/AAAAAAAAAAD4//n/AAAAAAAAAAD4//r/AAAAAAAAAAD4//v/AAAAAAAAAAD5//v/AAAAAAAAAAD5//z/AAAAAAAAAAD4//z/AAAAAAAAAAD4//3/AAAAAAAAAAD5//3/AAAAAAAAAAD4//7/AAAAAAAAAAD5//7/AAAAAAAAAAD6//7/AAAAAAAAAAD4////AAAAAAAAAAD5////AAAAAAAAAAD5/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD4/wAAAAAAAAAAAAD4/wEAAAAAAAAAAAD5/wEAAAAAAAAAAAD6/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD5/wIAAAAAAAAAAAD6/wIAAAAAAAAAAAD7/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD5/wMAAAAAAAAAAAD6/wMAAAAAAAAAAAD7/wMAAAAAAAAAAAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAA=")
+tile_set = ExtResource("1_mlupu")
+
+[node name="ForestVillage" type="Area2D" parent="." unique_id=1044667171 instance=ExtResource("2_7hvne")]
+position = Vector2(-248, -48)
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+script = ExtResource("3_b2yex")
+location_label = NodePath("../LocationUI/LocationLabel")
+
+[node name="Ground" parent="ForestVillage" index="0"]
+visible = false
+
+[node name="Clearing" parent="ForestVillage" index="1"]
+visible = false
+
+[node name="TreeWest" parent="ForestVillage" index="2"]
+visible = false
+
+[node name="TreeEast" parent="ForestVillage" index="3"]
+visible = false
+
+[node name="HouseWest" parent="ForestVillage" index="4"]
+visible = false
+
+[node name="HouseEast" parent="ForestVillage" index="5"]
+visible = false
+
+[node name="Awning" parent="ForestVillage/Stall"]
+visible = false
+
+[node name="Counter" parent="ForestVillage/Stall"]
+visible = false
+
+[node name="Wood" parent="ForestVillage/Stall"]
+visible = false
+
+[node name="Post" parent="ForestVillage/GuildBoard"]
+visible = false
+
+[node name="Board" parent="ForestVillage/GuildBoard"]
+visible = false
+
+[node name="Notice" parent="ForestVillage/GuildBoard"]
+visible = false
+
+[node name="Art" type="Node2D" parent="." unique_id=1753709973]
+
+[node name="Pine" type="Sprite2D" parent="Art" unique_id=615359611]
+z_index = 1
+position = Vector2(-306, -72)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_38rpl")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 160)
+
+[node name="Oak" type="Sprite2D" parent="Art" unique_id=1999672204]
+z_index = 1
+position = Vector2(-230, -98)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_38rpl")
+region_enabled = true
+region_rect = Rect2(128, 0, 128, 160)
+
+[node name="CarpenterHouse" type="Sprite2D" parent="Art" unique_id=809487723]
+z_index = 1
+position = Vector2(-276, -88)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_38rpl")
+region_enabled = true
+region_rect = Rect2(128, 160, 128, 160)
+
+[node name="House" type="Sprite2D" parent="Art" unique_id=660220801]
+z_index = 1
+position = Vector2(-206, -68)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_38rpl")
+region_enabled = true
+region_rect = Rect2(0, 160, 128, 160)
+
+[node name="MarketStall" type="Sprite2D" parent="Art" unique_id=692175598]
+z_index = 1
+position = Vector2(-248, -72)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_38rpl")
+region_enabled = true
+region_rect = Rect2(0, 320, 128, 160)
+
+[node name="Signpost" type="Sprite2D" parent="Art" unique_id=1705500435]
+z_index = 1
+position = Vector2(-344, -74)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_38rpl")
+region_enabled = true
+region_rect = Rect2(384, 320, 128, 160)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1474183943 groups=["player"] instance=ExtResource("5_2vjk1")]
+position = Vector2(32, -48)
+collision_layer = 2
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("6_os0nr")
+
+[node name="LocationUI" type="CanvasLayer" parent="." unique_id=1182420691]
+
+[node name="LocationLabel" type="Label" parent="LocationUI" unique_id=976922659]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 28.0
+offset_right = -24.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0.97, 0.95, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.08, 0.05, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 28
+text = "野外"
+horizontal_alignment = 1
+vertical_alignment = 1
